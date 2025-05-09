@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header class="encabezado">
+        <ul class="menuNavegacion__lista">
+            <li class="menuNavegacion__elemento"><a class="elemento__link" href="usuarios.html">Usuarios</a></li>
+            <li class="menuNavegacion__elemento"><a class="elemento__link" href="ciudades.html">Ciudades</a></li>
+            <li class="menuNavegacion__elemento"><a class="elemento__link" href="generos.html">Generos</a></li>
+            <li class="menuNavegacion__elemento"><a class="elemento__link" href="lenguajes.html">lenguajes</a></li>
+        </ul>
+    </header>
+
+    <form action="#" class="formulario">
+        <h3>USUARIOS</h3>
+        <input type="text" name="documento" id="documento" class="formulario__campo" placeholder="Ingrese su documento">
+        <input type="text" name="nombre" id="nombre" class="formulario__campo" placeholder="Ingrese su nombre">
+        <input type="text" name="apellido" id="apellido" class="formulario__campo " placeholder="Ingrese su apellido">
+        <input type="text" name="telefono" id="telefono" class="formulario__campo " placeholder="Ingrese su telefono">
+        <input type="password" name="contrasenia" id="contrasenia" class="formulario__campo " placeholder="Ingrese su contraseña">
+        <label for="formulario__radios">Seleccione su genero:</label>
+        <div class="formulario__radios" id="formulario__radios">
+            <div class="formulario__radio radio">
+                <input type="radio" id="masculino" name="genero">
+                <label for="masculino">Masculino</label>            
+            </div>
+            <div class="formulario__radio radio">
+                <input type="radio" id="femenino" name="genero">
+                <label for="femenino">femenino</label>            
+            </div>
+        </div>
+
+
+        <label for="formulario__checboxs">Seleccione los lenguajes</label>
+        <div class="formulario__checboxs" id="formulario__checboxs">
+            <div class="formulario__checbox checbox">
+                <input type="checkbox" id="JavaScript" name="lenguaje">
+                <label for="JavaScript">JavaScript</label>
+            </div>
+            <div class="formulario__checbox checbox">
+                <input type="checkbox" id="Java" name="Java">
+                <label for="Java">Java</label>
+            </div>
+            <div class="formulario__checbox checbox">
+                <input type="checkbox" id="Csharp" name="Csharp">
+                <label for="Csharp">C#</label>
+            </div>
+        </div>
+
+        <select name="ciudad" id="ciudad" class="formulario__campo">
+            <option value="1">Seleccione</option>
+        </select>
+        <button class="formulario__boton">Guardar</button>
+    </form>
+    <script type="module" src="./validation/usuarios.js"></script>
+</body>
+</html>

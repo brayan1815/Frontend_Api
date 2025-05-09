@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Cal Sans", sans-serif;
+}
+
+/*---------------------------- ESTILOS INDEX ----------------------*/
+
+body{
+    background-color: rgb(76, 76, 76);
+    width: 100%;
+}
+.encabezado{
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    background-color: black;
+}
+
+
+.menuNavegacion__lista{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuNavegacion__elemento{
+    margin: 0 3%;
+    border: solid 2px white;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.elemento__link{
+    text-decoration:none;
+    color: white;
+}
+
+/*----------------------- ESTILOS FORMULARIO DE USUARIOS --------------------------------*/
+
+.formulario{
+    width: 30%;
+    height: 80%;
+    border: solid 3px black;
+    margin: 4% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1%;
+    gap: 1vh;
+    border-radius: 50px;
+}
+.formulario__campo{
+    width: 80%;
+    text-align: center;
+    height: 5vh;
+    border-radius: 50px;
+    padding: 0 15px;
+    outline: none;
+    background-color: black;
+    border: none;
+    color: rgb(207, 206, 206);
+}
+
+.formulario__campo::placeholder{
+    color: rgb(207, 206, 206);
+}
+
+.formulario__radios{
+    display: flex;
+    width: 80%;
+    height: 5vh;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid 3px black;
+    border-radius: 15px;
+}
+
+.formulario__boton{
+    width: 40%;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: rgb(207, 206, 206);
+    border: none;
+}
+
+.formulario__boton:hover{
+    cursor: pointer;
+     box-shadow: 0px 0px 40px 2px rgb(207, 206, 206);
+  transition: 1s;
+}
+
+.formulario__checboxs{
+    display: flex;
+    flex-direction: column;
+    border: solid 3px black;
+    width: 80%;
+    border-radius: 15px;
+    padding: 0 15px;
+}
