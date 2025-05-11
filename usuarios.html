@@ -16,46 +16,62 @@
         </ul>
     </header>
 
-    <form action="#" class="formulario">
+    <form action="#" class="formulario" novalidate>
         <h3>USUARIOS</h3>
-        <input type="text" name="documento" id="documento" class="formulario__campo" placeholder="Ingrese su documento">
-        <input type="text" name="nombre" id="nombre" class="formulario__campo" placeholder="Ingrese su nombre">
-        <input type="text" name="apellido" id="apellido" class="formulario__campo " placeholder="Ingrese su apellido">
-        <input type="text" name="telefono" id="telefono" class="formulario__campo " placeholder="Ingrese su telefono">
-        <input type="password" name="contrasenia" id="contrasenia" class="formulario__campo " placeholder="Ingrese su contraseña">
-        <label for="formulario__radios">Seleccione su genero:</label>
-        <div class="formulario__radios" id="formulario__radios">
-            <div class="formulario__radio radio">
-                <input type="radio" id="masculino" name="genero">
-                <label for="masculino">Masculino</label>            
-            </div>
-            <div class="formulario__radio radio">
-                <input type="radio" id="femenino" name="genero">
-                <label for="femenino">femenino</label>            
+        <div class="padre_input">
+            <input type="text" name="documento" id="documento" class="formulario__campo" placeholder="Ingrese su documento" required>
+        </div>
+        <div class="padre_input">
+            <input type="text" name="nombre" id="nombre" class="formulario__campo" placeholder="Ingrese su nombre" required>
+        </div>
+        <div class="padre_input">
+            <input type="text" name="apellido" id="apellido" class="formulario__campo " placeholder="Ingrese su apellido" required>
+        </div>
+        <div class="padre_input">
+            <input type="text" name="telefono" id="telefono" class="formulario__campo " placeholder="Ingrese su telefono" required>
+        </div>
+        <div class="padre_input">
+            <input type="password" name="contrasenia" id="contrasenia" class="formulario__campo " placeholder="Ingrese su contraseña" required>
+        </div>
+        <div class="padre_input">
+            <label for="formulario__radios">Seleccione su genero:</label>
+            <div class="formulario__radios" id="formulario__radios">
+                <div class="formulario__radio radio">
+                    <input type="radio" id="masculino" name="genero" required>
+                    <label for="masculino">Masculino</label>            
+                </div>
+                <div class="formulario__radio radio">
+                    <input type="radio" id="femenino" name="genero" required>
+                    <label for="femenino">femenino</label>            
+                </div>
             </div>
         </div>
 
-
-        <label for="formulario__checboxs">Seleccione los lenguajes</label>
-        <div class="formulario__checboxs" id="formulario__checboxs">
-            <div class="formulario__checbox checbox">
-                <input type="checkbox" id="JavaScript" name="lenguaje">
-                <label for="JavaScript">JavaScript</label>
-            </div>
-            <div class="formulario__checbox checbox">
-                <input type="checkbox" id="Java" name="Java">
-                <label for="Java">Java</label>
-            </div>
-            <div class="formulario__checbox checbox">
-                <input type="checkbox" id="Csharp" name="Csharp">
-                <label for="Csharp">C#</label>
+        <div class="padre_input">
+            <label for="formulario__checboxs">Seleccione los lenguajes</label>
+            <div class="formulario__checboxs" id="formulario__checboxs">
+                <div class="formulario__checbox checbox">
+                    <input type="checkbox" id="JavaScript" name="lenguaje" required>
+                    <label for="JavaScript">JavaScript</label>
+                </div>
+                <div class="formulario__checbox checbox">
+                    <input type="checkbox" id="Java" name="lenguaje" required>
+                    <label for="Java">Java</label>
+                </div>
+                <div class="formulario__checbox checbox">
+                    <input type="checkbox" id="Csharp" name="lenguaje" required>
+                    <label for="Csharp">C#</label>
+                </div>
             </div>
         </div>
 
-        <select name="ciudad" id="ciudad" class="formulario__campo">
-            <option value="1">Seleccione</option>
-        </select>
-        <button class="formulario__boton">Guardar</button>
+        <div class="padre_input">
+            <select name="ciudad" id="ciudad" class="formulario__campo" required>
+                <option value="0">Seleccione</option>
+                <option value="1">Piedecuesta</option>
+            </select>
+        </div>
+        <button  type="submit" class="formulario__boton">Guardar</button>
     </form>
     <script type="module" src="./validation/usuarios.js"></script>
 </body>
