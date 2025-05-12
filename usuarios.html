@@ -16,7 +16,7 @@
         </ul>
     </header>
 
-    <form action="#" class="formulario" novalidate>
+    <form action="#" class="formulario" novalidate autocomplete="off">
         <h3>USUARIOS</h3>
         <div class="padre_input">
             <input type="text" name="documento" id="documento" class="formulario__campo" placeholder="Ingrese su documento" required>
@@ -28,7 +28,7 @@
             <input type="text" name="apellido" id="apellido" class="formulario__campo " placeholder="Ingrese su apellido" required>
         </div>
         <div class="padre_input">
-            <input type="text" name="telefono" id="telefono" class="formulario__campo " placeholder="Ingrese su telefono" required>
+            <input type="text" name="telefono" id="telefono" class="formulario__campo " placeholder="Ingrese su telefono" required max="10" min="10">
         </div>
         <div class="padre_input">
             <input type="password" name="contrasenia" id="contrasenia" class="formulario__campo " placeholder="Ingrese su contraseña" required>

@@ -130,3 +130,22 @@ export const limpiarChecboxs=(event)=>{
         }
     }
 }
+
+export const validarMinimo=(event)=>{
+    let minimo=event.target.getAttribute("min");
+    if(event.target.value.length<minimo){
+        event.target.classList.add("border-red")
+        if (event.target.nextElementSibling) event.target.nextElementSibling.remove();
+        let afterend = document.createElement('span');
+        afterend.textContent = `El campo ${event.target.getAttribute("name")} debe tener minimo ${minimo} caracteres`
+        event.target.insertAdjacentElement('afterend', afterend);
+    }
+}
+
+export const validarMaximo=event=>{
+    let maximo=event.target.getAttribute("max");
+    // console.log(maximo);
+    if(event.target.value.length>=maximo && event.key!="Backspace"){
+        event.preventDefault();
+    }
+}

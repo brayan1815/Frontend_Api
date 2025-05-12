@@ -1,4 +1,4 @@
-import { limpiar, limpiarChecboxs, limpiarRadios, validar, validarLetras, validarNumeros } from "../modules/modulos.js";
+import { validarMaximo, limpiar, limpiarChecboxs, limpiarRadios, validar, validarLetras, validarNumeros, validarMinimo } from "../modules/modulos.js";
 
 const formulario=document.querySelector("form");
 const documento_usuario=document.querySelector('[name="documento"]');
@@ -30,3 +30,5 @@ radios_genero.forEach(radio => {
 cheboxs_lenguajes.forEach(chec=>{
     chec.addEventListener('change',limpiarChecboxs)
 })
+telefono_usuario.addEventListener('keydown',validarMaximo)
+telefono_usuario.addEventListener('blur',validarMinimo)
