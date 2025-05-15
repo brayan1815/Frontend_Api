@@ -16,10 +16,27 @@
         </ul>
     </header>
 
-    <form action="#" class="formulario">
+    <form action="#" class="formulario" novalidate autocomplete="off">
         <h3>Generos</h3>
-        <input type="text" name="nombre_genero" id="nombre_genero" class="formulario__campo" placeholder="Ingrese el nombre del genero">
+        <div class="padre_input">
+            <input type="text" name="genero" id="nombre_genero" class="formulario__campo" placeholder="Ingrese el nombre del genero" required min="4">
+        </div>
         <button class="formulario__boton">Guardar</button>
     </form>
+
+    <table class="tabla tabla--pequeña">
+        <thead class="tabla__encabezado">
+            <tr>
+                <th>ID</th>
+                <th>Nombre del genero</th>
+            </tr>
+        </thead>
+        <tbody class="tabla__cuerpo">
+            <tr class="tabla__fila">
+                
+            </tr>
+        </tbody>
+    </table>
+    <script type="module" src="validation/generos.js"></script>
 </body>
 </html>

@@ -121,3 +121,20 @@ span{
     font-size: 80%;
     text-align: center;
 }
+
+.tabla{
+    margin: 20px auto;
+    width: 60%;
+    border-spacing: 0;
+}
+
+.tabla__campo{
+    border: solid 1px black;
+    text-align: center;
+}
+
+/*-------------------------------------- FORMULARIO GENEROS ---------------------------------------*/
+
+.tabla--pequeña{
+    width: 30%;
+}

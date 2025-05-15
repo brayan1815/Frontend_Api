@@ -16,10 +16,26 @@
         </ul>
     </header>
 
-    <form action="#" class="formulario">
+    <form action="#" class="formulario" autocomplete="off" novalidate>
         <h3>Lenguajes</h3>
-        <input type="text" name="nombre_lenguaje" id="nombre_lenguaje" class="formulario__campo" placeholder="Ingrese el nombre del lenguaje">
+        <div class="padre_input">
+            <input type="text" name="nombre_lenguaje" id="nombre_lenguaje" class="formulario__campo" placeholder="Ingrese el nombre del lenguaje" required min="4">
+        </div>
         <button class="formulario__boton">Guardar</button>
     </form>
+    <table class="tabla tabla--pequeña">
+        <thead class="tabla__encabezado">
+            <tr>
+                <th>ID</th>
+                <th>Nombre del lenguaje</th>
+            </tr>
+        </thead>
+        <tbody class="tabla__cuerpo">
+            <tr class="tabla__fila">
+                
+            </tr>
+        </tbody>
+    </table>
+    <script type="module" src="validation/lenguajes.js"></script>
 </body>
 </html>

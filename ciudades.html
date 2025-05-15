@@ -16,10 +16,26 @@
         </ul>
     </header>
 
-    <form action="#" class="formulario">
+    <form action="#" class="formulario" novalidate autocomplete="off">
         <h3>Ciudades</h3>
-        <input type="text" name="nombre_ciudad" id="nombre_ciudad" class="formulario__campo" placeholder="Ingrese el nombre de la ciudad">
+        <div class="padre_input">
+            <input type="text" name="ciudad" id="nombre_ciudad" class="formulario__campo" placeholder="Ingrese el nombre de la ciudad" required min="4">
+        </div>
         <button class="formulario__boton">Guardar</button>
     </form>
+    <table class="tabla tabla--pequeña">
+    <thead class="tabla__encabezado">
+        <tr>
+            <th>ID</th>
+            <th>Nombre de la ciudad</th>
+        </tr>
+    </thead>
+    <tbody class="tabla__cuerpo">
+        <tr class="tabla__fila">
+            
+        </tr>
+    </tbody>
+</table>
+<script type="module" src="validation/ciudades.js"></script>
 </body>
 </html>

@@ -91,51 +91,61 @@ export const validar=(event)=>{
         if(campo.type=="radio")return campo;
     })
 
-    const validarChequeoRdios=(radios)=>{
-        for(let n=0;n<radios.length;n++){
-            if(radios[n].checked){
-                let propiedad=radios[n].getAttribute('name');
-                let valor=radios[n].getAttribute('value');
-                info[propiedad]=valor;
-                return true
-            };
+    if(radios.length>0){
+        const validarChequeoRdios=(radios)=>{
+            for(let n=0;n<radios.length;n++){
+                if(radios[n].checked){
+                    let propiedad=radios[n].getAttribute('name');
+                    let valor=radios[n].getAttribute('value');
+                    info[propiedad]=valor;
+                    return true
+                };
+            }
+            return false;
         }
-        return false;
+    
+        if(validarChequeoRdios(radios)==false){
+            let par=radios[0].parentElement;
+            let contenRadios=par.parentElement;
+            contenRadios.classList.add("border-red");
+            if (contenRadios.nextElementSibling) contenRadios.nextElementSibling.remove();
+            let afterend = document.createElement('span');
+            afterend.textContent = "Debe seleccionar un genero"
+            contenRadios.insertAdjacentElement('afterend', afterend);
+        }
     }
 
-    if(validarChequeoRdios(radios)==false){
-        let par=radios[0].parentElement;
-        let contenRadios=par.parentElement;
-        contenRadios.classList.add("border-red");
-        if (contenRadios.nextElementSibling) contenRadios.nextElementSibling.remove();
-        let afterend = document.createElement('span');
-        afterend.textContent = "Debe seleccionar un genero"
-        contenRadios.insertAdjacentElement('afterend', afterend);
-    }
 
     const cheboxs=campos.filter((campo)=>{
         if(campo.type=="checkbox")return campo;
     })
-
-    const cheboxs_seleccionados=cheboxs.filter((checbox) => checbox.checked)
-    if(cheboxs_seleccionados.length<3){
-        let pad=cheboxs[0].parentElement;
-        let padre_checboxs=pad.parentElement;
-        padre_checboxs.classList.add("border-red")
-        if (padre_checboxs.nextElementSibling) padre_checboxs.nextElementSibling.remove();
-        let afterend = document.createElement('span');
-        afterend.textContent = "Debe seleccionar minimo 3 lenguajes"
-        padre_checboxs.insertAdjacentElement('afterend', afterend);
-    }else{
-        let lenguajes=[];
-        for(let n=0;n<cheboxs_seleccionados.length;n++){
-            let valor=cheboxs_seleccionados[n].value;
-            lenguajes.push(valor)
+    
+    if(cheboxs.length>0){
+        const cheboxs_seleccionados=cheboxs.filter((checbox) => checbox.checked)
+        if(cheboxs_seleccionados.length<3){
+            let pad=cheboxs[0].parentElement;
+            let padre_checboxs=pad.parentElement;
+            padre_checboxs.classList.add("border-red")
+            if (padre_checboxs.nextElementSibling) padre_checboxs.nextElementSibling.remove();
+            let afterend = document.createElement('span');
+            afterend.textContent = "Debe seleccionar minimo 3 lenguajes"
+            padre_checboxs.insertAdjacentElement('afterend', afterend);
+        }else{
+            let lenguajes=[];
+            for(let n=0;n<cheboxs_seleccionados.length;n++){
+                let valor=cheboxs_seleccionados[n].value;
+                lenguajes.push(valor)
+            }
+            let propiedad=cheboxs_seleccionados[0].getAttribute('name');
+            info[propiedad]=lenguajes;
         }
-        let propiedad=cheboxs_seleccionados[0].getAttribute('name');
-        info[propiedad]=lenguajes;
     }
-            console.log(info)
+
+    let cant_campos=contarCampos(event.target);
+    if(Object.keys(info).length>=cant_campos){
+        egregarFilaTabla(info);
+    }
+    
 
 }
 
@@ -220,4 +230,31 @@ export const validarContraseniaMensaje=event=>{
     }else return true;
 }
 
+const contarCampos=formulario=>{
+    const campos=formulario.querySelectorAll(".padre_input");
+    return campos.length;
+}
 
+let id=1;
+const egregarFilaTabla=(info)=>{
+    let filasTabla=document.querySelectorAll(".tabla__fila");
+    let ultimaFila=filasTabla[filasTabla.length-1];
+
+    let elemento=document.createElement('th');
+            elemento.textContent=id;
+            elemento.classList.add('tabla__campo');
+            ultimaFila.insertAdjacentElement('beforeend',elemento);
+
+    Object.keys(info).forEach(llave=>{
+        if(llave!="lenguaje"){
+            let elemento=document.createElement('th');
+            elemento.textContent=info[llave];
+            elemento.classList.add('tabla__campo');
+            ultimaFila.insertAdjacentElement('beforeend',elemento);
+        }
+    })
+    let nuevaFila=document.createElement('tr');
+    nuevaFila.classList.add('tabla__fila');
+    ultimaFila.insertAdjacentElement('afterend',nuevaFila);
+    id++;
+}
