@@ -1,4 +1,4 @@
-import { validarMaximo, limpiar, limpiarChecboxs, limpiarRadios, validar, validarLetras, validarNumeros, validarMinimo } from "../modules/modulos.js";
+import { validarMaximo, limpiar, limpiarChecboxs, limpiarRadios, validar, validarLetras, validarNumeros, validarMinimo, validarContraseniaMensaje } from "../modules/modulos.js";
 
 const formulario=document.querySelector("form");
 const documento_usuario=document.querySelector('[name="documento"]');
@@ -32,3 +32,7 @@ cheboxs_lenguajes.forEach(chec=>{
 })
 telefono_usuario.addEventListener('keydown',validarMaximo)
 telefono_usuario.addEventListener('blur',validarMinimo)
+documento_usuario.addEventListener('blur',validarMinimo)
+nombre_usuario.addEventListener('blur',validarMinimo);
+apellido_usuario.addEventListener('blur',validarMinimo)
+constrasenia_usuario.addEventListener('blur',validarContraseniaMensaje)

@@ -19,29 +19,29 @@
     <form action="#" class="formulario" novalidate autocomplete="off">
         <h3>USUARIOS</h3>
         <div class="padre_input">
-            <input type="text" name="documento" id="documento" class="formulario__campo" placeholder="Ingrese su documento" required>
+            <input type="text" name="documento" id="documento" class="formulario__campo" placeholder="Ingrese su documento" required min="6">
         </div>
         <div class="padre_input">
-            <input type="text" name="nombre" id="nombre" class="formulario__campo" placeholder="Ingrese su nombre" required>
+            <input type="text" name="nombre" id="nombre" class="formulario__campo" placeholder="Ingrese su nombre" required min="4">
         </div>
         <div class="padre_input">
-            <input type="text" name="apellido" id="apellido" class="formulario__campo " placeholder="Ingrese su apellido" required>
+            <input type="text" name="apellido" id="apellido" class="formulario__campo " placeholder="Ingrese su apellido" required min="5">
         </div>
         <div class="padre_input">
             <input type="text" name="telefono" id="telefono" class="formulario__campo " placeholder="Ingrese su telefono" required max="10" min="10">
         </div>
         <div class="padre_input">
-            <input type="password" name="contrasenia" id="contrasenia" class="formulario__campo " placeholder="Ingrese su contraseña" required>
+            <input type="password" name="contrasenia" id="contrasenia" class="formulario__campo " placeholder="Ingrese su contraseña" required >
         </div>
         <div class="padre_input">
             <label for="formulario__radios">Seleccione su genero:</label>
             <div class="formulario__radios" id="formulario__radios">
                 <div class="formulario__radio radio">
-                    <input type="radio" id="masculino" name="genero" required>
+                    <input type="radio" id="masculino" name="genero" required value="1">
                     <label for="masculino">Masculino</label>            
                 </div>
                 <div class="formulario__radio radio">
-                    <input type="radio" id="femenino" name="genero" required>
+                    <input type="radio" id="femenino" name="genero" required value="2">
                     <label for="femenino">femenino</label>            
                 </div>
             </div>
@@ -51,15 +51,15 @@
             <label for="formulario__checboxs">Seleccione los lenguajes</label>
             <div class="formulario__checboxs" id="formulario__checboxs">
                 <div class="formulario__checbox checbox">
-                    <input type="checkbox" id="JavaScript" name="lenguaje" required>
+                    <input type="checkbox" id="JavaScript" name="lenguaje" required value="1">
                     <label for="JavaScript">JavaScript</label>
                 </div>
                 <div class="formulario__checbox checbox">
-                    <input type="checkbox" id="Java" name="lenguaje" required>
+                    <input type="checkbox" id="Java" name="lenguaje" required value="2">
                     <label for="Java">Java</label>
                 </div>
                 <div class="formulario__checbox checbox">
-                    <input type="checkbox" id="Csharp" name="lenguaje" required>
+                    <input type="checkbox" id="Csharp" name="lenguaje" required value="3">
                     <label for="Csharp">C#</label>
                 </div>
             </div>

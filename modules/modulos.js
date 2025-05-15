@@ -14,26 +14,62 @@ export const validarNumeros=(event)=>{
   }
 }
 
+const validarContrasenia=(campo)=>{
+    // console.log(campo);
+    const expresion=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{8,}$/;
+
+    if(campo.value.match(expresion))return true
+    else return false;
+}
+
 export const validar=(event)=>{
+    let info={};
     event.preventDefault();
 
     const campos=[...event.target].filter((campo)=>{
         if(campo.hasAttribute("required")) return campo;
     })
-    console.log(campos);
+    // console.log(campos);
     campos.forEach(campo=>{
         let tipo=campo.tagName;
-        console.log(tipo);
         
         switch(tipo){
             case "INPUT":
-                if(campo.value==""){
-                    campo.classList.add("border-red");
-                    campo.focus();
-                    if(campo.nextElementSibling) campo.nextElementSibling.remove();
-                    let afterend=document.createElement('span');
-                    afterend.textContent=`El campo ${campo.getAttribute("name")} no puede estar vacio`;
-                    campo.insertAdjacentElement('afterend',afterend);
+                
+                if(campo.getAttribute('type')=="text"){
+                    if(campo.value==""){
+                        campo.classList.add("border-red");
+                        campo.focus();
+                        if(campo.nextElementSibling) campo.nextElementSibling.remove();
+                        let afterend=document.createElement('span');
+                        afterend.textContent=`El campo ${campo.getAttribute("name")} no puede estar vacio`;
+                        campo.insertAdjacentElement('afterend',afterend);
+                    }else{
+                        // console.log(campo);
+                        if(validarMinimotwo(campo)){
+                            let propiedad=campo.getAttribute('name');
+                            info[propiedad]=campo.value;
+                        }
+                    }
+                    
+                }else if(campo.getAttribute('type')=="password"){
+
+                    if (campo.value==""){
+                        campo.classList.add("border-red");
+                        campo.focus();
+                        if(campo.nextElementSibling) campo.nextElementSibling.remove();
+                        let afterend=document.createElement('span');
+                        afterend.textContent=`El campo ${campo.getAttribute("name")} no puede estar vacio`;
+                        campo.insertAdjacentElement('afterend',afterend);
+                    }
+                    else{
+                        console.log(validarContrasenia(campo))
+                        if(validarContrasenia(campo)){
+                            let propiedad=campo.getAttribute('name');
+                            info[propiedad]=campo.value;
+                        }
+                    }
+
                 }
                 break;
             case "SELECT":
@@ -43,6 +79,9 @@ export const validar=(event)=>{
                     let afterend = document.createElement('span');
                     afterend.textContent = "Debe seleccionar un elemento"
                     campo.insertAdjacentElement('afterend', afterend);
+                }else{
+                    let propiedad=campo.getAttribute('name');
+                    info[propiedad]=campo.value;
                 }
                 break;
         }
@@ -54,12 +93,15 @@ export const validar=(event)=>{
 
     const validarChequeoRdios=(radios)=>{
         for(let n=0;n<radios.length;n++){
-            if(radios[n].checked)return true;
+            if(radios[n].checked){
+                let propiedad=radios[n].getAttribute('name');
+                let valor=radios[n].getAttribute('value');
+                info[propiedad]=valor;
+                return true
+            };
         }
         return false;
     }
-
-    console.log(validarChequeoRdios(radios))
 
     if(validarChequeoRdios(radios)==false){
         let par=radios[0].parentElement;
@@ -76,7 +118,6 @@ export const validar=(event)=>{
     })
 
     const cheboxs_seleccionados=cheboxs.filter((checbox) => checbox.checked)
-    console.log(cheboxs_seleccionados)
     if(cheboxs_seleccionados.length<3){
         let pad=cheboxs[0].parentElement;
         let padre_checboxs=pad.parentElement;
@@ -85,7 +126,17 @@ export const validar=(event)=>{
         let afterend = document.createElement('span');
         afterend.textContent = "Debe seleccionar minimo 3 lenguajes"
         padre_checboxs.insertAdjacentElement('afterend', afterend);
+    }else{
+        let lenguajes=[];
+        for(let n=0;n<cheboxs_seleccionados.length;n++){
+            let valor=cheboxs_seleccionados[n].value;
+            lenguajes.push(valor)
+        }
+        let propiedad=cheboxs_seleccionados[0].getAttribute('name');
+        info[propiedad]=lenguajes;
     }
+            console.log(info)
+
 }
 
 export const limpiar = (event) => {
@@ -139,7 +190,15 @@ export const validarMinimo=(event)=>{
         let afterend = document.createElement('span');
         afterend.textContent = `El campo ${event.target.getAttribute("name")} debe tener minimo ${minimo} caracteres`
         event.target.insertAdjacentElement('afterend', afterend);
-    }
+        return false;
+    }else return true;
+}
+
+const validarMinimotwo=(campo)=>{
+    let minimo=campo.getAttribute('min');
+    let valor=campo.value.length;
+    if(valor<minimo) return false
+    else return true;
 }
 
 export const validarMaximo=event=>{
@@ -149,3 +208,16 @@ export const validarMaximo=event=>{
         event.preventDefault();
     }
 }
+
+export const validarContraseniaMensaje=event=>{
+    const expresion=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W_]).{8,}$/;
+    if(!event.target.value.match(expresion)){
+        if (event.target.nextElementSibling) event.target.nextElementSibling.remove();
+        let afterend = document.createElement('span');
+        afterend.textContent = `la contraseña debe tener minimo una mayuscula, una minuscula, un caracter especial y 8 caracteres`
+        event.target.insertAdjacentElement('afterend', afterend);
+        return false
+    }else return true;
+}
+
+
