@@ -1,3 +1,5 @@
+import { post } from "../api.js";
+
 export const validarLetras=(event)=>{
     let tecla=event.key;
     const letras=/[a-zñáéíóú\s]/i;
@@ -22,7 +24,7 @@ const validarContrasenia=(campo)=>{
     else return false;
 }
 
-export const validar=(event)=>{
+export const validar= async (event)=>{
     let info={};
     event.preventDefault();
 
@@ -143,7 +145,8 @@ export const validar=(event)=>{
 
     let cant_campos=contarCampos(event.target);
     if(Object.keys(info).length>=cant_campos){
-        egregarFilaTabla(info);
+        const respuesta=await post("ciudades",info)
+        console.log(respuesta);
     }
     
 
