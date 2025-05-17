@@ -1,5 +1,11 @@
 import { validarMaximo, limpiar, limpiarChecboxs, limpiarRadios, validar, validarLetras, validarNumeros, validarMinimo, validarContraseniaMensaje } from "../modules/modulos.js";
 
+import { cargarCiudades, cargarGeneros, cargarLenguajes, crearTabla } from "./cargarDatos.js";
+
+cargarLenguajes();
+cargarGeneros();
+crearTabla();
+
 const formulario=document.querySelector("form");
 const documento_usuario=document.querySelector('[name="documento"]');
 const nombre_usuario=document.querySelector('[name="nombre"]');
@@ -12,7 +18,7 @@ const cheboxs_lenguajes=document.querySelectorAll('[name="lenguaje"]')
 
 
 
-
+ciudad_usuario.addEventListener('click',cargarCiudades());
 formulario.addEventListener('submit',validar)
 documento_usuario.addEventListener('keydown',validarNumeros);
 nombre_usuario.addEventListener('keydown',validarLetras);
