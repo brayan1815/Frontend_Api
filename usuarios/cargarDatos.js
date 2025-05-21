@@ -4,7 +4,7 @@ export const cargarCiudades=async ()=>{
 
     const ciudades=await get("ciudades");
 
-    const select =document.querySelector('[name="ciudad"]');
+    const select =document.querySelector('[name="id_ciudad"]');
 
     ciudades.data.forEach(ciudad => {
         let opcion=document.createElement("option");
@@ -29,7 +29,7 @@ export const cargarGeneros=async()=>{
             let radio=document.createElement("input");
             radio.setAttribute('type',"radio");
             radio.setAttribute('id',genero.genero)
-            radio.setAttribute('name',"genero");
+            radio.setAttribute('name',"id_genero");
             radio.setAttribute('required',true);
             radio.setAttribute('value', genero.genero_id);
             formularioRadio.append(radio);
@@ -60,7 +60,7 @@ export const cargarLenguajes=async()=>{
             let checbox=document.createElement("input");
             checbox.setAttribute('type',"checkbox");
             checbox.setAttribute('id',lenguaje.lenguaje);
-            checbox.setAttribute('name',"lenguaje");
+            checbox.setAttribute('name',"id_lenguaje");
             checbox.setAttribute('required',true);
             checbox.setAttribute('value',lenguaje.lenguaje_id);
             formularioChecbox.append(checbox);
@@ -76,9 +76,9 @@ export const cargarLenguajes=async()=>{
     }
 }
 
-export const crearTabla=async ()=>{
+export const crearTablaUsuarios=async (info)=>{
 
-    const usuarios=await get("usuarios");
+    // const usuarios=await get("usuarios");
     const generos=await get("generos");
     const ciudades=await get("ciudades");
 
@@ -95,26 +95,17 @@ export const crearTabla=async ()=>{
 
     const filaEncabezado=document.createElement("tr")
 
-    const encabezadoId=document.createElement("th");
-    const encabezadoDocumento=document.createElement("th");
-    const encabezadoNombre=document.createElement("th");
-    const encabezadoApellido=document.createElement("th");
-    const encabezadoTelefono=document.createElement("th");
-    const encabezadoContrasenia=document.createElement("th");
-    const encabezadoGenero=document.createElement("th");
-    const encabezadoCiudad=document.createElement("th");
-    const encabezadoOpciones=document.createElement("th");
-    encabezadoId.textContent="ID";
-    encabezadoDocumento.textContent="Documento";
-    encabezadoNombre.textContent="Nombre";
-    encabezadoApellido.textContent="Apellido";
-    encabezadoTelefono.textContent="Telefono";
-    encabezadoContrasenia.textContent="Contrasenia";
-    encabezadoGenero.textContent="Genero";
-    encabezadoCiudad.textContent="Ciudad";
-    encabezadoOpciones.textContent="Opciones";
 
-    filaEncabezado.append(encabezadoId,encabezadoDocumento,encabezadoNombre,encabezadoApellido,encabezadoTelefono,encabezadoContrasenia,encabezadoGenero,encabezadoCiudad,encabezadoOpciones);
+    Object.keys(info[0]).forEach(llave=>{
+        const celdaEncabezado=document.createElement("th");
+        if(llave!="id_genero" && llave!="id_ciudad")celdaEncabezado.textContent=llave;
+        else{
+            if(llave=="id_genero") celdaEncabezado.textContent="genero"
+            if(llave=="id_ciudad") celdaEncabezado.textContent="ciudad"
+        }
+        filaEncabezado.append(celdaEncabezado);
+    })
+
     encabezado.append(filaEncabezado);
     tabla.append(encabezado);
 
@@ -122,45 +113,30 @@ export const crearTabla=async ()=>{
     const cuerpo=document.createElement("tbody");
     cuerpo.classList.add("tabla__cuerpo")
 
-    usuarios.data.forEach(usuario => {
+    info.forEach(registro => {
         const filaCuerpo=document.createElement("tr");
         filaCuerpo.classList.add("tabla__fila");
-
-        const Id=document.createElement("th");
-        Id.classList.add("tabla__campo");
-        const Documento=document.createElement("th");
-        Documento.classList.add("tabla__campo");
-        const Nombre=document.createElement("th");
-        Nombre.classList.add("tabla__campo");
-        const Apellido=document.createElement("th");
-        Apellido.classList.add("tabla__campo");
-        const Telefono=document.createElement("th");
-        Telefono.classList.add("tabla__campo");
-        const Contrasenia=document.createElement("th");
-        Contrasenia.classList.add("tabla__campo");
-        const Genero=document.createElement("th");
-        Genero.classList.add("tabla__campo");
-        const Ciudad=document.createElement("th");
-        Ciudad.classList.add("tabla__campo");
+        Object.keys(registro).forEach((llave)=>{
+            const campoCuerpo=document.createElement("th")
+            campoCuerpo.classList.add("tabla__campo");
+            if(llave!="id_genero" && llave!="id_ciudad")campoCuerpo.textContent=registro[llave];
+            else{
+                if(llave=="id_ciudad"){
+                    ciudades.data.forEach(ciudad => {
+                        if(ciudad.ciudad_id==registro[llave]) campoCuerpo.textContent=ciudad.ciudad_nombre;
+                    });
+                }
+                if(llave=="id_genero"){
+                    generos.data.forEach(genero=>{
+                        if(genero.genero_id==registro[llave])campoCuerpo.textContent=genero.genero;
+                    })
+                }
+            }
+            filaCuerpo.append(campoCuerpo);
+        })
         const Opciones=document.createElement("th");
         Opciones.classList.add("tabla__campo");
 
-        Id.textContent=usuario.usuario_id;
-        Documento.textContent=usuario.documento;
-        Nombre.textContent=usuario.nombre;
-        Apellido.textContent=usuario.apellido;
-        Telefono.textContent=usuario.telefono;
-        Contrasenia.textContent=usuario.contrasena;
-        generos.data.forEach(genero => {
-            if(genero.genero_id==usuario.id_genero){
-                Genero.textContent=genero.genero;
-            }
-        });
-        ciudades.data.forEach(ciudad => {
-            if(ciudad.ciudad_id==usuario.id_ciudad){
-                Ciudad.textContent=ciudad.ciudad_nombre;
-            }
-        });
 
         /*----Creacion de los botones de la tabla --- */
 
@@ -183,9 +159,13 @@ export const crearTabla=async ()=>{
 
         Opciones.append(contenedorBotones);
 
-        filaCuerpo.append(Id,Documento,Nombre,Apellido,Telefono,Contrasenia,Genero,Ciudad,Opciones)
+        filaCuerpo.append(Opciones)
         cuerpo.append(filaCuerpo);
     });
     tabla.append(cuerpo);
     body.append(tabla)
+}
+
+export const crearTablaLenguajeUsuario=async(encabezado,info)=>{
+
 }

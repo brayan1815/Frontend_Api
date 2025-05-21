@@ -1,25 +1,33 @@
 import { validarMaximo, limpiar, limpiarChecboxs, limpiarRadios, validar, validarLetras, validarNumeros, validarMinimo, validarContraseniaMensaje } from "../modules/modulos.js";
 
-import { cargarCiudades, cargarGeneros, cargarLenguajes, crearTabla } from "./cargarDatos.js";
+import { cargarCiudades, cargarGeneros, cargarLenguajes, crearTablaUsuarios , crearTablaLenguajeUsuario} from "./cargarDatos.js";
 
-cargarLenguajes();
-cargarGeneros();
-crearTabla();
+import { get } from "../api.js";
+
+const usuarios=await get("usuarios");
+
+await cargarLenguajes();
+await cargarGeneros();
+crearTablaUsuarios(usuarios.data);
+
+crearTablaLenguajeUsuario(["ID","Usuario","Lenguaje"])
 
 const formulario=document.querySelector("form");
 const documento_usuario=document.querySelector('[name="documento"]');
 const nombre_usuario=document.querySelector('[name="nombre"]');
 const apellido_usuario=document.querySelector('[name="apellido"]');
 const telefono_usuario=document.querySelector('#telefono');
-const constrasenia_usuario=document.querySelector('[name="contrasenia"]')
-const ciudad_usuario=document.querySelector('[name="ciudad"]')
-const radios_genero=document.querySelectorAll('[name="genero"]')
-const cheboxs_lenguajes=document.querySelectorAll('[name="lenguaje"]')
+const constrasenia_usuario=document.querySelector('[name="contrasena"]')
+const ciudad_usuario=document.querySelector('[name="id_ciudad"]')
+const radios_genero=document.querySelectorAll('[name="id_genero"]')
+const cheboxs_lenguajes=document.querySelectorAll('[name="id_lenguaje"]')
+
+
 
 
 
 ciudad_usuario.addEventListener('click',cargarCiudades());
-formulario.addEventListener('submit',validar)
+formulario.addEventListener('submit',(event)=>{validar(event,"usuarios")})
 documento_usuario.addEventListener('keydown',validarNumeros);
 nombre_usuario.addEventListener('keydown',validarLetras);
 apellido_usuario.addEventListener('keydown',validarLetras);

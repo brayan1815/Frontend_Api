@@ -1,4 +1,4 @@
-import { post } from "../api.js";
+import { get, post } from "../api.js";
 
 export const validarLetras=(event)=>{
     let tecla=event.key;
@@ -24,7 +24,7 @@ const validarContrasenia=(campo)=>{
     else return false;
 }
 
-export const validar= async (event)=>{
+export const validar= async (event,endpoint)=>{
     let info={};
     event.preventDefault();
 
@@ -145,7 +145,24 @@ export const validar= async (event)=>{
 
     let cant_campos=contarCampos(event.target);
     if(Object.keys(info).length>=cant_campos){
-        const respuesta=await post("ciudades",info)
+        const respuesta=await post(endpoint,info)
+
+        if (endpoint == "usuarios") {
+            for (let n = 0; n < info.id_lenguaje.length; n++) {
+            let regi = {};
+            let usu = await get("usuarios");
+            let id_usu = usu.data[usu.data.length - 1].usuario_id;
+
+            
+            regi["id_usuario"] = parseInt(id_usu);
+            regi["id_lenguaje"] = parseInt(info.id_lenguaje[n]);
+
+            console.log("Enviando:", regi); 
+
+            await post("lenguajeUsuarios", regi);
+    }
+}
+
         console.log(respuesta);
     }
     
