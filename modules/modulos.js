@@ -146,6 +146,7 @@ export const validar= async (event,endpoint)=>{
     let cant_campos=contarCampos(event.target);
     if(Object.keys(info).length>=cant_campos){
         const respuesta=await post(endpoint,info)
+        console.log(info)
 
         if (endpoint == "usuarios") {
             for (let n = 0; n < info.id_lenguaje.length; n++) {
