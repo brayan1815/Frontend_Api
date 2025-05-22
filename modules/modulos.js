@@ -24,7 +24,7 @@ const validarContrasenia=(campo)=>{
     else return false;
 }
 
-export const validar= async (event,endpoint)=>{
+export const validar= async (event)=>{
     let info={};
     event.preventDefault();
 
@@ -143,10 +143,18 @@ export const validar= async (event,endpoint)=>{
         }
     }
 
+
     let cant_campos=contarCampos(event.target);
     if(Object.keys(info).length>=cant_campos){
+        return info;
+    }else return false;
+}
+
+export const agregaraDB=async(event,endpoint)=>{
+    const info=await validar(event)
+    if(info!=false){
+
         const respuesta=await post(endpoint,info)
-        console.log(info)
 
         if (endpoint == "usuarios") {
             for (let n = 0; n < info.id_lenguaje.length; n++) {
@@ -161,13 +169,11 @@ export const validar= async (event,endpoint)=>{
             console.log("Enviando:", regi); 
 
             await post("lenguajeUsuarios", regi);
+            }
+        }
+        if(respuesta.status==200)alert("El registro se ha realizaco correctamente");
+        else alert("Ocurrio un error al guardar el registro")
     }
-}
-
-        console.log(respuesta);
-    }
-    
-
 }
 
 export const limpiar = (event) => {

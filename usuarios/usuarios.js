@@ -1,4 +1,4 @@
-import { validarMaximo, limpiar, limpiarChecboxs, limpiarRadios, validar, validarLetras, validarNumeros, validarMinimo, validarContraseniaMensaje } from "../modules/modulos.js";
+import { validarMaximo, limpiar, limpiarChecboxs, limpiarRadios, validar, validarLetras, validarNumeros, validarMinimo, validarContraseniaMensaje, agregaraDB } from "../modules/modulos.js";
 
 import { cargarCiudades, cargarGeneros, cargarLenguajes, crearTablaUsuarios , crearTablaLenguajeUsuario} from "./cargarDatos.js";
 
@@ -27,7 +27,7 @@ const cheboxs_lenguajes=document.querySelectorAll('[name="id_lenguaje"]')
 
 
 ciudad_usuario.addEventListener('click',cargarCiudades());
-formulario.addEventListener('submit',(event)=>{validar(event,"usuarios")})
+formulario.addEventListener('submit',(event)=>{agregaraDB(event,"usuarios")})
 documento_usuario.addEventListener('keydown',validarNumeros);
 nombre_usuario.addEventListener('keydown',validarLetras);
 apellido_usuario.addEventListener('keydown',validarLetras);
@@ -50,3 +50,9 @@ documento_usuario.addEventListener('blur',validarMinimo)
 nombre_usuario.addEventListener('blur',validarMinimo);
 apellido_usuario.addEventListener('blur',validarMinimo)
 constrasenia_usuario.addEventListener('blur',validarContraseniaMensaje)
+window.addEventListener('click',(event)=>{
+    console.log(event.target)
+    if(event.target.matches('.editar')){
+        window.location.href=`actualizarUsuario.html?id=${encodeURIComponent(id)}`
+    }
+})

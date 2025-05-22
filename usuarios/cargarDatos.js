@@ -144,17 +144,20 @@ export const crearTablaUsuarios=async (info)=>{
         contenedorBotones.classList.add("botonesTabla")
 
         const botonEditar=document.createElement("button");
-        botonEditar.classList.add("botonesTabla__boton");
+        botonEditar.classList.add("botonesTabla__boton","editar");
         const iconoEdit=document.createElement("i");
         iconoEdit.classList.add("bi", "bi-pencil-square")
         botonEditar.append(iconoEdit)
+        botonEditar.setAttribute("id",registro.usuario_id)
         contenedorBotones.append(botonEditar);
 
         const botonEliminar=document.createElement("button")
-        botonEliminar.classList.add("botonesTabla__boton","botonesTabla__boton--rojo");
+        botonEliminar.classList.add("botonesTabla__boton","botonesTabla__boton--rojo","eliminar");
         const iconElim=document.createElement("i");
         iconElim.classList.add("bi","bi-trash-fill")
+        botonEliminar.setAttribute("id",registro.usuario_id);
         botonEliminar.append(iconElim);
+
         contenedorBotones.append(botonEliminar);
 
         Opciones.append(contenedorBotones);
