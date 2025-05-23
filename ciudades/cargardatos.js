@@ -21,13 +21,13 @@ export const crearTablaCiudades=(info_encabezado,info)=>{
         const cuerpo=document.createElement("tbody");
         cuerpo.classList.add("tabla__cuerpo");
 
-        info.forEach(registroLenguaje => {
+        info.forEach(registroCiudad => {
             const fila=document.createElement("tr")
             fila.classList.add("tabla__fila");
-            Object.keys(registroLenguaje).forEach(llave=>{
+            Object.keys(registroCiudad).forEach(llave=>{
                 const campo=document.createElement("th");
                 campo.classList.add("tabla__campo");
-                campo.textContent=registroLenguaje[llave];
+                campo.textContent=registroCiudad[llave];
                 fila.append(campo);
             })
 
@@ -39,16 +39,18 @@ export const crearTablaCiudades=(info_encabezado,info)=>{
             contenedorBotones.classList.add("botonesTabla")
 
             const botonEditar=document.createElement("button");
-            botonEditar.classList.add("botonesTabla__boton");
+            botonEditar.classList.add("botonesTabla__boton","editar");
             const iconoEdit=document.createElement("i");
             iconoEdit.classList.add("bi", "bi-pencil-square")
+            botonEditar.setAttribute("id",registroCiudad.ciudad_id)
             botonEditar.append(iconoEdit)
             contenedorBotones.append(botonEditar);
 
             const botonEliminar=document.createElement("button")
-            botonEliminar.classList.add("botonesTabla__boton","botonesTabla__boton--rojo");
+            botonEliminar.classList.add("botonesTabla__boton","botonesTabla__boton--rojo","eliminar");
             const iconElim=document.createElement("i");
             iconElim.classList.add("bi","bi-trash-fill")
+            botonEliminar.setAttribute("id",registroCiudad.ciudad_id)
             botonEliminar.append(iconElim);
             contenedorBotones.append(botonEliminar);
 

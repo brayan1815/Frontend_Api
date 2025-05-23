@@ -13,5 +13,11 @@ const nombre_ciudad=document.querySelector('[name="ciudad_nombre"]');
 formulario.addEventListener('submit',(event)=>{agregaraDB(event,"ciudades")});
 nombre_ciudad.addEventListener('blur',limpiar)
 nombre_ciudad.addEventListener('blur',validarMinimo)
+window.addEventListener('click',(event)=>{
+    if(event.target.matches(".editar")){
+        const id=event.target.getAttribute("id");
+        window.location.href=`actualizarCiudades.html?id=${encodeURIComponent(id)}`
+    }
+})
 
 
