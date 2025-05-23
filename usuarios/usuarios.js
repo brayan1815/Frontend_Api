@@ -2,7 +2,7 @@ import { validarMaximo, limpiar, limpiarChecboxs, limpiarRadios, validar, valida
 
 import { cargarCiudades, cargarGeneros, cargarLenguajes, crearTablaUsuarios , crearTablaLenguajeUsuario} from "./cargarDatos.js";
 
-import { get } from "../api.js";
+import { get,del } from "../api.js";
 
 const usuarios=await get("usuarios");
 
@@ -44,15 +44,38 @@ radios_genero.forEach(radio => {
 cheboxs_lenguajes.forEach(chec=>{
     chec.addEventListener('change',limpiarChecboxs)
 })
+
+documento_usuario.addEventListener('keydown',validarMaximo)
 telefono_usuario.addEventListener('keydown',validarMaximo)
 telefono_usuario.addEventListener('blur',validarMinimo)
 documento_usuario.addEventListener('blur',validarMinimo)
 nombre_usuario.addEventListener('blur',validarMinimo);
 apellido_usuario.addEventListener('blur',validarMinimo)
 constrasenia_usuario.addEventListener('blur',validarContraseniaMensaje)
-window.addEventListener('click',(event)=>{
-    console.log(event.target)
+window.addEventListener('click',async(event)=>{
+    // console.log(event.target)
     if(event.target.matches('.editar')){
+        const id=event.target.getAttribute("id")
         window.location.href=`actualizarUsuario.html?id=${encodeURIComponent(id)}`
+    }
+    if(event.target.matches(".eliminar")){
+        
+        const id=event.target.getAttribute("id");
+        
+        
+        const lenUsu=(await get("lenguajeUsuarios")).data;
+        
+        for(let n=0;n<lenUsu.length;n++){
+            if(lenUsu[n].id_usuario==id){
+                
+                let respuesta=await del(`lenguajeUsuarios/${lenUsu[n].id}`)      
+                console.log(respuesta);
+                
+            }
+        }
+        
+        let respuesta=await del(`usuarios/${id}`)
+        
+        if(respuesta.status==200) alert("El usuario se ha eliminado correctamente")
     }
 })

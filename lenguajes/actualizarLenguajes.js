@@ -18,6 +18,8 @@ formulario.addEventListener('submit',async(event)=>{
     if(info!=false){
         const respuesta=await put(`lenguajes/${id}`,info)
         console.log(respuesta);
+
+        if(respuesta.status==200)alert("El registro se ha actualizado correctamente")
     }
 })
 

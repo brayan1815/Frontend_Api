@@ -4,6 +4,7 @@ export const get=async(endpoint)=>{
 }
 
 export const post=async(endpoint,info)=>{
+
     return await fetch(`http://localhost:3000/`+endpoint,{
         method:'POST',
         headers:{
@@ -20,5 +21,14 @@ export const put=async(endpoint,info)=>{
             'Content-Type':'application/json'
         },
         body:JSON.stringify(info)
+    })
+}
+
+export const del=async(endpoint)=>{
+    return await fetch(`http://localhost:3000/`+endpoint,{
+        method:'DELETE',
+        headers:{
+            'Content-Type':'application/json'
+        }
     })
 }

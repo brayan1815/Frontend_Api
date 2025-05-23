@@ -155,20 +155,31 @@ export const agregaraDB=async(event,endpoint)=>{
     if(info!=false){
 
         const respuesta=await post(endpoint,info)
+        // let res2;
+        console.log(respuesta);
+        
 
         if (endpoint == "usuarios") {
             for (let n = 0; n < info.id_lenguaje.length; n++) {
-            let regi = {};
-            let usu = await get("usuarios");
-            let id_usu = usu.data[usu.data.length - 1].usuario_id;
+            // console.log(info.id_lenguaje[n]);
+                let regi = {};
+                let usu = await get("usuarios");
+                let id_usu = usu.data[usu.data.length - 1].usuario_id;
+                id_usu=parseInt(id_usu);
+                let id_leng=parseInt(info.id_lenguaje[n]);
 
-            
-            regi["id_usuario"] = parseInt(id_usu);
-            regi["id_lenguaje"] = parseInt(info.id_lenguaje[n]);
+                console.log("id_usu: "+typeof(id_usu))
+                console.log("id_len: "+typeof(id_leng))
 
-            console.log("Enviando:", regi); 
+                
+                regi["id_usuario"] = id_usu;
+                regi["id_lenguaje"] = id_leng;
 
-            await post("lenguajeUsuarios", regi);
+                // console.log("Enviando:", regi); 
+
+                const res2=await post("lenguajeUsuarios", regi);
+                console.log(res2);
+                
             }
         }
         if(respuesta.status==200)alert("El registro se ha realizaco correctamente");

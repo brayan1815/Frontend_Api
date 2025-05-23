@@ -22,6 +22,8 @@ formulario.addEventListener('submit',async(event)=>{
     if(info!=false){
         const respuesta=await put(`ciudades/${id}`,info)
         console.log(respuesta);
+
+        if(respuesta.status==200)alert("El registor se ha actualizado correctamente");
     }
 });
 nombre_ciudad.addEventListener('blur',limpiar)

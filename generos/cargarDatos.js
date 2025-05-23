@@ -47,7 +47,7 @@ export const crearTablaGeneros=(info_encabezado,info)=>{
             contenedorBotones.append(botonEditar);
 
             const botonEliminar=document.createElement("button")
-            botonEliminar.classList.add("botonesTabla__boton","botonesTabla__boton--rojo","editar");
+            botonEliminar.classList.add("botonesTabla__boton","botonesTabla__boton--rojo","eliminar");
             const iconElim=document.createElement("i");
             iconElim.classList.add("bi","bi-trash-fill")
             botonEliminar.setAttribute("id",registroGenero.genero_id)

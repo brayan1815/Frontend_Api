@@ -20,19 +20,19 @@
     <form action="#" class="formulario" novalidate autocomplete="off">
         <h3>ACTUALIZAR USUARIO</h3>
         <div class="padre_input">
-            <input type="text" name="documento" id="documento" class="formulario__campo" placeholder="Ingrese su documento" required min="6">
+            <input type="text" name="documento" id="documento" class="formulario__campo" placeholder="Ingrese su documento" required min="8" max="10">
         </div>
         <div class="padre_input">
-            <input type="text" name="nombre" id="nombre" class="formulario__campo" placeholder="Ingrese su nombre" required min="4">
+            <input type="text" name="nombre" id="nombre" class="formulario__campo" placeholder="Ingrese su nombre" required min="3" max="49">
         </div>
         <div class="padre_input">
-            <input type="text" name="apellido" id="apellido" class="formulario__campo " placeholder="Ingrese su apellido" required min="5">
+            <input type="text" name="apellido" id="apellido" class="formulario__campo " placeholder="Ingrese su apellido" required min="3" max="49">
         </div>
         <div class="padre_input">
             <input type="text" name="telefono" id="telefono" class="formulario__campo " placeholder="Ingrese su telefono" required max="10" min="10">
         </div>
         <div class="padre_input">
-            <input type="password" name="contrasena" id="contrasenia" class="formulario__campo " placeholder="Ingrese su contraseña" required >
+            <input type="password" name="contrasena" id="contrasenia" class="formulario__campo " placeholder="Ingrese su contraseña" required min="8" >
         </div>
         <div class="padre_input">
             <label for="formulario__radios">Seleccione su genero:</label>
@@ -48,9 +48,9 @@
             </div>
         </div>
 
-        <!-- <div class="padre_input">
+        <div class="padre_input">
             <label for="formulario__checboxs">Seleccione los lenguajes</label>
-            <div class="" id="formulario__checboxs"> -->
+            <div class="" id="formulario__checboxs">
                 <!-- <div class="formulario__checbox checbox">
                     <input type="checkbox" id="JavaScript" name="lenguaje" required value="1">
                     <label for="JavaScript">JavaScript</label>
@@ -63,8 +63,8 @@
                     <input type="checkbox" id="Csharp" name="lenguaje" required value="3">
                     <label for="Csharp">C#</label>
                 </div> -->
-            <!-- </div>
-        </div> -->
+            </div>
+        </div>
 
         <div class="padre_input">
             <select name="id_ciudad" id="ciudad" class="formulario__campo" required>

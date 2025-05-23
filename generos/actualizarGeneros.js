@@ -21,6 +21,8 @@ formulario.addEventListener('submit',async(event)=>{
     if(info!=false){
         const respuesta=await put(`generos/${id}`,info)
         console.log(respuesta);
+
+        if(respuesta.status==200) alert("El registro se ha actualizado correctamente");
     }
 });
 nombre_genero.addEventListener('blur',limpiar)
